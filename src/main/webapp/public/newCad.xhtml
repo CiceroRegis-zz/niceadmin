@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="nice" name="styles/bootstrap.min.css" />
+	<h:outputStylesheet library="nice" name="styles/newCadForm.css" />
+
+	<script
+		src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<title>Cadastro de Usuários</title>
+</h:head>
+<h:body>
+
+	<div class="container" style="margin-left: 25%;">
+		<div class="col-md-6" >
+			<div class="form-area">
+				<h:form id="register" role="form">
+					<p:messages id="msgs" />
+					<h:inputHidden value="#{userController.user.id}" />
+					<h:inputHidden value="#{userController.user.enabled}" />
+					<h:inputHidden value="#{userController.userSuccess}" />
+
+					<h3 style="margin-bottom: 25px; text-align: center;">Contact
+						Form</h3>
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Nome:" for="nome" />
+						<div class="form-group">
+							<h:inputText id="nome" label="Nome"
+								value="#{userController.user.name}" size="30" maxlength="30"
+								required="true" requiredMessage="Você não tem nome?"
+								class="form-control">
+								<f:validateLength minimum="10" maximum="30" />
+							</h:inputText>
+						</div>
+
+						<h:outputLabel value="Data Nascimento:" for="data" />
+						<div class="form-group">
+							<h:inputText id="data" label="Data Nascimento"
+								value="#{userController.user.birthday}" size="10" maxlength="10"
+								required="true" class="form-control">
+								<f:convertDateTime dateStyle="medium" />
+							</h:inputText>
+						</div>
+
+						<h:outputLabel value="Celular:" for="celular" />
+						<div class="form-group">
+							<h:inputText id="celular" label="Celular"
+								value="#{userController.user.mobile}" size="10"
+								class="form-control" />
+						</div>
+
+						<h:outputLabel value="e-Mail:" for="email" />
+						<div class="form-group">
+							<h:inputText id="email" label="e-Mail"
+								value="#{userController.user.email}" size="50" maxlength="50"
+								required="true" validatorMessage="email inválido"
+								class="form-control">
+								<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+							</h:inputText>
+						</div>
+
+						<h:outputLabel value="Idioma:" for="idioma" />
+						<div class="form-group">
+							<h:selectOneMenu id="idioma" class="form-control"
+								value="#{userController.user.language}">
+								<f:selectItem itemValue="pt_BR" itemLabel="Português" />
+								<f:selectItem itemValue="en_US" itemLabel="English" />
+								<f:selectItem itemValue="es_ES" itemLabel="Espanol" />
+							</h:selectOneMenu>
+						</div>
+
+						<h:outputLabel value="Login:" for="login" />
+						<div class="form-group">
+							<h:inputText id="login" label="Login"
+								value="#{userController.user.login}" size="15" maxlength="15"
+								required="true" class="form-control"
+								validatorMessage="Login deve ter no mínimo 5 e no máximo 15 caracteres e só pode ter os símbolos '.' e '_'.">
+								<f:validateRegex pattern="([a-z]|[0-9]|[.]|[_]){5,15}" />
+							</h:inputText>
+						</div>
+
+						<h:outputLabel value="Senha:" for="senha" />
+						<div class="form-group">
+							<h:inputSecret id="senha" label="Senha" class="form-control"
+								value="#{userController.user.password}" size="10" maxlength="10"
+								required="true" redisplay="true" />
+						</div>
+
+						<h:outputLabel value="Confirmar Senha:" for="confirmarsenha" />
+						<div class="form-group">
+							<h:inputSecret id="confirmarsenha" label="Confirmar Senha"
+								value="#{userController.confirmPassword}" size="10"
+								maxlength="10" required="true" redisplay="true"
+								class="form-control" />
+						</div>
+					</h:panelGrid>
+
+					<h:commandButton action="#{userController.save}" value="Salvar"
+						class="btn btn-primary pull-right" style="margin-top:10px;"/>
+				</h:form>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

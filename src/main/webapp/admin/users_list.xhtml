@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">
+			<b>Area Administrativa</b>
+		</h1>
+		<div class="table-responsive">
+			<h:form id="form">
+				<p:messages closable="true" />
+				<div class="form-group col-md-3" >
+				<h:inputText class="form-control" value="#{paginationUserController.name}" id="name" >
+				<f:passThroughAttribute name="placeholder" value="Digite um nome para pesquisa" />
+				</h:inputText>
+				</div>
+				<div class="form-group " >
+				<h:commandLink 
+				action="#{paginationUserController.searchByName()}" update="@this">
+				<h:graphicImage library="nice/images"
+									name="find-user.png" style="border:0;margin-left:25%;float:left;margin-top:-4%;"
+									width="30" height="30" title="Pesquisar"/>
+				</h:commandLink>
+				</div>
+				
+				<h:dataTable id="table" var="user" value="#{paginationUserController.users}"
+					rendered="#{paginationUserController.users ne null}" reflow="true"
+					class="table table-striped table-hover table-condensed">
+
+					<h:column>
+						<f:facet name="header">
+							Id
+						</f:facet>
+						<h:outputText value="#{user.id}" />
+					</h:column>
+					<h:column>
+						<div style="text-align: center;">
+							<f:facet name="header">
+								<div style="text-align: center;">Nome</div>
+							</f:facet>
+							<h:outputText value="#{user.name}" />
+						</div>
+					</h:column>
+
+					<h:column>
+						<div style="text-align: center;">
+							<f:facet name="header">
+								<div style="text-align: center;">E-mail</div>
+							</f:facet>
+							<h:outputText value="#{user.email}" />
+						</div>
+					</h:column>
+
+					<h:column>
+						<div style="text-align: center;">
+							<f:facet name="header">
+								<div style="text-align: center;">Celular</div>
+							</f:facet>
+							<h:outputText value="#{user.mobile}" />
+						</div>
+					</h:column>
+
+
+					<h:column>
+						<div style="text-align: center;">
+							<f:facet name="header">
+								<div style="text-align: center;">Status</div>
+							</f:facet>
+							<h:commandLink action="#{userController.status()}"
+								title="Ativo/Inativo">
+								<h:graphicImage library="nice/images"
+									name="user_emoji_#{user.enabled}.png" style="border:0"
+									width="30" height="30" />
+								<f:setPropertyActionListener target="#{userController.user}"
+									value="#{user}" />
+							</h:commandLink>
+						</div>
+					</h:column>
+
+
+					<h:column>
+						<div style="text-align: center;">
+							<f:facet name="header">
+								<div style="text-align: center;">Idioma</div>
+							</f:facet>
+							<h:graphicImage library="nice/images"
+								name="bandeira_#{user.language}.png" />
+						</div>
+					</h:column>
+
+
+					<h:column>
+						<div style="text-align: center;">
+							<f:facet name="header">
+								<div style="text-align: center;">Login</div>
+							</f:facet>
+							<h:outputText value="#{user.login}" />
+						</div>
+					</h:column>
+
+					<h:column>
+						<div style="text-align: center;">
+							<f:facet name="header">
+								<div style="text-align: center;">Data de Aniversário</div>
+							</f:facet>
+							<h:outputText value="#{user.birthday}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</div>
+					</h:column>
+
+					<h:column>
+
+						<f:facet name="header">
+							<div style="text-align: center;">Ações</div>
+						</f:facet>
+						<h:commandLink action="#{userController.update()}" title="Editar">
+							<h:graphicImage library="nice/images" name="user_update.png"
+								style="border:0;margin-right:20px;" width="30" height="30" />
+								
+							<f:setPropertyActionListener value="#{user}"
+								target="#{userController.user}" />
+								
+							<f:setPropertyActionListener value="/admin/users_list"
+								target="#{userController.userSuccess}" />
+						</h:commandLink>
+
+
+						<h:commandLink action="#{userController.delete()}"
+							onclick="if(!confirm('Confirma a exclusão do usuário #{user.name}?')) return false"
+							title="Excluir">
+							<h:graphicImage library="nice/images" name="user_delete.png"
+								style="border:0" width="30" height="30" />
+							<f:setPropertyActionListener value="#{user}"
+								target="#{userController.user}" />
+						</h:commandLink>
+					</h:column>
+
+				</h:dataTable>
+				<nav aria-label="Page navigation" >
+				<ul class="pagination justify-content-center">
+				<li class="page-item"><h:commandLink class="page-link "  action="#{paginationUserController.pagePrevious}"
+                             disabled="#{paginationUserController.firstRow == 0}">Anterior</h:commandLink></li>
+					<ui:repeat value="#{paginationUserController.pages}" var="page">
+					 
+						<li class="page-item"><h:commandLink value="#{page}" class="page-link"
+							actionListener="#{paginationUserController.page}"
+							rendered="#{page != paginationUserController.currentPage}" /></li>
+						<h:outputText value="&lt;b&gt;#{page}&lt;/b&gt;" escape="false"
+							rendered="#{page == paginationUserController.currentPage}" class="page-link"/>
+					</ui:repeat>
+					<li class="page-item"><h:commandLink class="page-link" action="#{paginationUserController.pageNext}"
+                             disabled="#{paginationUserController.firstRow + paginationUserController.rowsPerPage &gt;= paginationUserController.totalRows}">Próximo</h:commandLink></li>
+					</ul>
+					<h:outputText value="Página #{paginationUserController.currentPage} de #{paginationUserController.totalPages}" style="float:right; margin-top:-45px;margin-right:30%;"/>
+					</nav>
+			</h:form>
+		</div>
+
+	</ui:define>
+</ui:composition>

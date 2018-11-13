@@ -1,0 +1,132 @@
+/* TOGGLE */
+.aw-toggle {
+	font-style: none;
+	float: left;
+	line-height: 50px;
+	margin-top:5px;
+	margin-left: 30px;
+	color: #fff;
+}
+
+/*Logo header*/
+a.logo {
+	font-size: 20px;
+	font-weight: 20px;
+	border-style: none;
+	color: #fed189;
+	float: left;
+	margin-top: 15px;
+	padding-left: 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.lite {
+	color: #00a0df !important;
+}
+
+a.logo:hover, a.logo:focus {
+	text-decoration: none;
+	outline: none;
+	color: #688a7e;
+}
+
+/* MENU */
+.aw-menu {
+	font-size: 1.1em;
+}
+
+.aw-menu>ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.aw-menu>ul a {
+	display: block;
+	padding: 10px 15px;
+	text-decoration: none;
+	font-weight: 500;
+	color: #ffff;
+}
+
+.aw-menu>ul i {
+	margin-right: 6px;
+}
+
+.aw-menu>ul a:hover, .aw-menu>ul a:focus {
+	background-color: #dfdfdf;
+}
+
+.aw-menu>ul .is-selected {
+	border-left: 3px solid #1e94d2;
+	background-color: #f3f3f3;
+}
+
+.aw-menu>ul .is-selected a {
+	margin-left: -3px;
+	color: #1e94d2;
+}
+
+/*Menu User*/
+/* Style The Dropdown Button */
+.dropbtn {
+    background-color: #1A2732;
+    margin-right:20px;
+    color: white;
+    padding: 18px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+   
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 190px;
+    min-height:60px;
+    margin-left:-60px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: #1a2732;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #cccc;
+	color: #394a59;	
+	}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #394a59;
+}
+/* PAGE-TITLE */
+.aw-page-title {
+	margin: 0;
+	padding: 20px 0;
+	font-size: 1.5em;
+	color: #373737;
+}

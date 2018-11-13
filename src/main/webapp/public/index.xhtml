@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="nice" name="styles/bootstrap.min.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<div class="container">
+			<div class="jumbotron mt-3">
+				<h1>Nice Admin</h1>
+				<p class="lead">Sistema para Gerenciamento de Usuários</p>
+				<h:commandLink class="btn btn-outline-primary"
+					action="#{userController.newCad}" style="margin-right:20px;">&laquo; Novo Usuário </h:commandLink>
+				<h:commandLink class="btn btn-outline-success" action="/login">Já possui Login &raquo;</h:commandLink>
+			</div>
+		</div>
+		<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+		<a class="navbar-brand" href="#" style="float: left; font-size: 10px;">Desenvolvido
+			por Cícero Régis</a> <a style="color: white;">&copy; Todos os
+			direitos Reservados. 2018</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarCollapse" aria-controls="navbarCollapse"
+			aria-expanded="false" aria-label="Toggle navigation"></button>
+
+		<!-- <div  style="margin-right: 30px; width: 20px;">
+			<a href="#" class="btn btn-lg btn-block onl_btn-facebook" style="font-size: 15px;"
+				data-toggle="tooltip" data-placement="top" title="Facebook"> <i
+				class="fa fa-facebook fa-2x"></i> <span class="hidden-xs"></span>
+			</a>
+		</div>
+
+		<div  style="margin-right: 30px;width: 30px;">
+			<a href="#" class="btn btn-lg btn-block onl_btn-github" style="font-size: 15px;"
+				data-toggle="tooltip" data-placement="top" title="GitHub"> <i
+				class="fa fa-github fa-2x"></i> <span class="hidden-xs"></span>
+			</a>
+		</div>
+
+
+		<div class="row onl_row-sm-offset-3 onl_socialButtons" style="margin-right: 60px;">
+			<div class="col-xs-2 col-sm-2">
+				<a href="#" class="btn btn-lg btn-block onl_btn-linkedin"  style="font-size: 15px;"
+					data-toggle="tooltip" data-placement="top" title="LinkedIn"> <i
+					class="fa fa-linkedin fa-2x"></i> <span class="hidden-xs"></span>
+				</a>
+			</div>
+		</div>
+		</nav>
+ --> </nav>
+
+	</h:form>
+</h:body>
+</html>
